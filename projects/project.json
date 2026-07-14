@@ -37,7 +37,7 @@
         ]
     },
     "options": {
-        "__disableCache": 0,
+        "__disableCache": 1,
         "__disableCacheByVer": 0,
         "__storeChildsAsObject": 1,
         "__supportedLangs": [
@@ -85,6 +85,8 @@
         [
             "layout",
             "level_1.json",
+            "level_2.json",
+            "level_3.json",
             "win.json"
         ],
         [
@@ -160,6 +162,7 @@
                     "build_res/data.js"
                 ],
                 "dst": "build_res/min.js",
+                "compressor": "no-compress",
                 "rmdebug": "debug/undebug,3d/no3d,cheats/endcheats,multiclass/unmulticlass",
                 "configuration": "release"
             },

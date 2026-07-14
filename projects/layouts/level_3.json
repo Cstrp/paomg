@@ -1,6 +1,6 @@
 [
   {
-    "name": "level_0",
+    "name": "level_2",
     "__size": [
       1234,
       768
@@ -16,7 +16,7 @@
         ]
       },
       "userInputArea": {
-        "__alpha": 1,
+        "__color": "#5f12e9",
         "sha": 0,
         "sva": 2,
         "__size": [
@@ -30,19 +30,15 @@
         ],
         "__childs": {
           "_0": {
-            "__img": "confetti_canon",
+            "__color": "#fb22a0",
             "__rotate": 3.9,
             "__size": [
-              90,
-              90
-            ],
-            "__ofs": [
-              -6,
-              6
+              25,
+              25
             ],
             "__childs": {
               "rubber": {
-                "__alpha": 0,
+                "__color": "#362207",
                 "sha": 2,
                 "sva": 1,
                 "__size": [
@@ -72,7 +68,7 @@
             },
             "__img": "block_1",
             "__ofs": [
-              296,
+              460,
               -16
             ]
           },
@@ -105,7 +101,7 @@
             },
             "__img": "block_2",
             "__ofs": [
-              299,
+              460,
               86
             ]
           },
@@ -121,7 +117,7 @@
             },
             "__img": "block_3",
             "__ofs": [
-              192,
+              350,
               207
             ]
           },
@@ -137,7 +133,7 @@
             },
             "__img": "block_3",
             "__ofs": [
-              408,
+              570,
               207
             ]
           },
@@ -157,8 +153,24 @@
               126
             ],
             "__ofs": [
-              299,
+              460,
               223
+            ]
+          },
+          "_6": {
+            "__physics": {
+              "__isStatic": false,
+              "__friction": 10,
+              "__frictionAir": 1,
+              "__frictionStatic": 50,
+              "__restitution": 0,
+              "__density": 1,
+              "__bodyType": 0
+            },
+            "__img": "block_1",
+            "__ofs": [
+              220,
+              130
             ]
           },
           "wall": {

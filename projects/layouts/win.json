@@ -73,6 +73,42 @@
           }
         }
       },
+      "score": {
+        "sva": 0.9,
+        "__size": [
+          360,
+          64
+        ],
+        "__scaleF": 0,
+        "__text": {
+          "__fontsize": 42,
+          "__text": "Score: 0"
+        },
+        "__y": 12,
+        "__keyframes": {
+          "loop": 0,
+          "__loopDisabled": 1,
+          "__easing": 27,
+          "__track": {
+            "__transform": {
+              "0": [
+                0,
+                90,
+                0,
+                0,
+                0
+              ],
+              "73": [
+                0,
+                12,
+                1,
+                1,
+                0
+              ]
+            }
+          }
+        }
+      },
       "stars": {
         "__size": [
           297,

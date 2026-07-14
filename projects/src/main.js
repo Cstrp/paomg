@@ -3,6 +3,11 @@
 
 options.__soundDisabled = 0;
 
+var levelIndex = 1;
+var score = 0;
+var shots = 0;
+var maxLevelIndex = 3;
+
 var level
     , rubber
     , blocks = []
@@ -67,6 +72,18 @@ function addBreakBlock(x, y, velocity){
             }, 1);
         }
     });
+}
+
+function getScore() {
+    if (shots <= 3) {
+        return 3
+    }
+
+    if (shots <= 6) {
+        return 2
+    }
+
+    return 1
 }
 
 function awakeBlocks(){
@@ -135,16 +152,32 @@ function initCollision(body, node, hp){
 
 function show_win() {
 
+    score += getScore();
+
     playSound('win');
+
+    var hasNextLevel = levelIndex < maxLevelIndex;
 
     // todo: посчитать очки игрока и выдать звезды
     showWindow('win', wnd => {
         wnd.__setAliasesData({
+            score: {
+                __text: 'Score: ' + score,
+            },
+
+            stars: {
+                __text: getScore() + ' *'
+            },
 
             button: {
+                __text: hasNextLevel ? TR('next_level') : TR('try_again'),
                 __onTap(){
-                    // todo: стартовать другой уровень?
-                    consoleLog("not implemented")
+                    closeWindow('win');
+                    if (hasNextLevel) {
+                        nextLevel();
+                    } else {
+                        restartGame();
+                    }
                 },
                 __onTapHighlight: 1
             }
@@ -158,9 +191,8 @@ function initLevel(){
 
     // добавляем первый уровень на сцену
     level = scene
-        .__addChildBox('level_1')
+        .__addChildBox('level_' + levelIndex)
         .__setAliasesData({
-
             rubber(node) {
                 rubber = node;
             },
@@ -178,6 +210,7 @@ function initLevel(){
                 },
                 __dragEnd() {
 
+                    shots++
                     playSound('punch');
 
                     // отпускаем резинку
@@ -185,11 +218,12 @@ function initLevel(){
                         __width: 10
                     }, 0.4, 0, easeElasticO);
                     var wp = this.__worldPosition
+                        , shotDirection = this.__dmouse.__clone().__normalize()
+                        , muzzle = new Vector2(wp.x, wp.y).__add(shotDirection.__multiplyScalar(72))
                         , bullet = level.__addChildBox({
-                            __effect: 'tail',
                             __img: 'circle1',
                             __size: [28, 28],
-                            __ofs: [wp.x, wp.y, -20],
+                            __ofs: [muzzle.x, muzzle.y, -25],
                             __physics: {
                                 __isStatic: false,
                                 __friction: 130,
@@ -244,6 +278,34 @@ function initLevel(){
         });
 
     }, 0.01);
+}
+
+function nextLevel() {
+    levelIndex++
+    if (levelIndex > maxLevelIndex) {
+        levelIndex = 1;
+    }
+
+    reloadLevel();
+}
+
+function restartGame() {
+    levelIndex = 1;
+    score = 0;
+    reloadLevel();
+}
+
+function reloadLevel() {
+
+    if (level) {
+        level.__removeFromParent();
+    }
+
+    blocks = [];
+    big_blocks = 0;
+    shots = 0;
+    initLevel();
+
 }
 
 

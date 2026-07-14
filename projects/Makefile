@@ -1,6 +1,6 @@
 .PHONY: SOUNDS ATLAS PRODUCTION ALL
 
-TOOLS=../../eeditor/tools
+TOOLS=../eeditor/tools
 LOG_LEVEL=debug
 TARGET?=ALL
 
