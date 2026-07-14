@@ -2,13 +2,13 @@ services:
   server:
     image: "eeditor-server"
     container_name: "eeditor-server"
-    restart: "no"
+    restart: "unless-stopped"
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "85:85"
+      - "88:80"
       - "443:443"
     volumes:
-      - "../../:/var/www/html"
-    command: "service apache2 start"
+      - "/home/cstrpd/paomg:/var/www/html"
+    command: ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

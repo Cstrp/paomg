@@ -31,14 +31,14 @@ RUN apt-get install -y --no-install-recommends php8.5
 RUN apt-get install -y --no-install-recommends libapache2-mod-php
 # RUN apt-get install -y --no-install-recommends php-mysql
 # RUN apt-get install -y --no-install-recommends php-curl
-# RUN apt-get install -y --no-install-recommends mysql-server 
+# RUN apt-get install -y --no-install-recommends mysql-server
 # RUN apt-get install -y --no-install-recommends php-mbstring
 # RUN apt-get install -y --no-install-recommends phpmyadmin
 RUN apt-get install -y --no-install-recommends mc
 
 RUN apt-get install -y --no-install-recommends nodejs
-RUN apt-get install -y --no-install-recommends dos2unix 
-RUN apt-get install -y --no-install-recommends zip 
+RUN apt-get install -y --no-install-recommends dos2unix
+RUN apt-get install -y --no-install-recommends zip
 RUN apt-get install -y --no-install-recommends ffmpeg
 
 RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 60 && wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb && dpkg -i libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb
@@ -88,8 +88,10 @@ RUN sed -i 's/post_max_size = 8M/post_max_size = 200M/g' /etc/php/8.5/apache2/ph
 RUN a2enmod headers
 
 # to build:
-# docker-compose up --build
+# docker compose up --build
 
 # to run:
-# docker run -v F:/dev/www/:/var/www/html -p 80:80 --rm -it eeditor-server bash 
-# service memcached start; service apache2 start; service mysql start 
+# docker run -v /home/cstrpd/paomg:/var/www/html -p 80:80 --rm -it eeditor-server bash
+# service memcached start; service apache2 start; service mysql start
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
